@@ -35,7 +35,7 @@ Computer Graphics Project #0.5 OpenGL Fundamentals
 
 ![ModelLoad](snaps/ModelLoad.png)
 
-* Displays a model onscreen with Phong lighting.
+* Displays a model onscreen with Blinn-Phong lighting.
 #### Translations
 * Down Key translates the model in the downward direction.
 * Up Key translates the model in the upward direction.

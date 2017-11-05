@@ -66,9 +66,10 @@ const GLchar *fragmentSource =
                 "   vec3 ambC = Color*ambient;"
                 "   vec3 reflectDir = reflect(lightDir,normal);"
                 "   vec3 viewDir = normalize(-pos);" //We know the eye is at (0,0)!
-                "   float spec = max(dot(reflectDir,viewDir),0.0);"
+                "   vec3 halfDir = normalize(lightDir+viewDir);"
+                "   float spec = max(dot(halfDir,normal),0.0);"
                 "   if (dot(lightDir,normal) <= 0.0)spec = 0;"
-                "   vec3 specC = vec3(1.0,1.0,1.0)*pow(spec,4);"
+                "   vec3 specC = vec3(1.0,1.0,1.0)*pow(spec,10);"
                 "   outColor = vec4(diffuseC+ambC+specC, 1.0);"
                 "}";
 
