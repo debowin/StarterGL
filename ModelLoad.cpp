@@ -29,6 +29,7 @@
 using namespace std;
 
 bool saveOutput = false;
+bool autoSpin = true;
 float timePast = 0;
 
 // Shader sources
@@ -255,7 +256,7 @@ int main(int argc, char *argv[]) {
             SDL_SetWindowFullscreen(window, fullscreen ? SDL_WINDOW_FULLSCREEN : 0); //Toggle fullscreen
         }
 
-        // infinite translations - end goes to start
+        // TODO: infinite translations - end goes to start
 
         // Clear the screen to default color
         glClearColor(.2f, 0.4f, 0.8f, 1.0f);
@@ -269,6 +270,10 @@ int main(int argc, char *argv[]) {
         model = glm::rotate(model, rotateX, glm::vec3(0.0f, 0.0f, 1.0f));
         model = glm::rotate(model, rotateY, glm::vec3(0.0f, 1.0f, 0.0f));
         model = glm::rotate(model, rotateZ, glm::vec3(1.0f, 0.0f, 0.0f));
+        if(autoSpin) {
+            model = glm::rotate(model, timePast * 3.14f / 2, glm::vec3(0.0f, 1.0f, 1.0f));
+            model = glm::rotate(model, timePast * 3.14f / 4, glm::vec3(1.0f, 0.0f, 0.0f));
+        }
         GLint uniModel = glGetUniformLocation(shaderProgram, "model");
         glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
